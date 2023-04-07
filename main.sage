@@ -1,5 +1,7 @@
 from typing import List, Tuple
 
+FactorList = List[Tuple[int, int]]
+
 
 def is_transitive(n, factors):
     return Graph([list(range(n)), factors]).is_connected()
@@ -13,9 +15,12 @@ def change_index_start(target, allowed_pairs, start_index=1):
         allowed_pairs[index] = (u - start_index, v - start_index)
 
 
+def eval_factors(factors: FactorList, target: List[int]):
+    pass
+
 def get_min_transitive_factorizations(
         target: List[int],
-        allowed_pairs: List[Tuple[int, int]]) -> Tuple[int, List[List[Tuple[int, int]]]]:
+        allowed_pairs: FactorList) -> Tuple[int, List[FactorList]]:
     """Find the list of minimal transitive factorizations of target using only the
     transpositions in allowed_pairs.
 
@@ -23,7 +28,7 @@ def get_min_transitive_factorizations(
     starting index.
 
     Returns:
-        (min length, list of minimal transitive factorizations) (int, List[List[Tuple[int, int]]])
+        (min length, list of minimal transitive factorizations) (int, List[FactorList])
         Returns (0, []) instead if the given pairs do not connect [n].
     """
     n = len(target)  # permutation size
@@ -57,7 +62,8 @@ def main():
     target = [5, 3, 2, 4, 1]
     change_index_start(target, allowed_pairs)
 
-    min_length, min_facts = get_min_transitive_factorizations(target, allowed_pairs)
+    min_length, min_facts = get_min_transitive_factorizations(
+        target, allowed_pairs)
     if min_facts[0] == 0:
         print(f"Given transpositions do not connect [{len(target)}].")
     else:
