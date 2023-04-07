@@ -10,7 +10,7 @@ Input file format:
 [allowed pair 2]
 ...
 
-Example: p = [1, 3, 4, 2], allowed pairs = (1, 2), (3, 4), (4, 2), (1, 3)
+Example: p = {1, 3, 4, 2}, allowed pairs = (1 2), (3 4), (4 2), (1 3)
 Input file:
 1 3 4 2
 1 2
